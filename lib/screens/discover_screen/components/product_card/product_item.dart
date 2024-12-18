@@ -18,11 +18,15 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
+    return Container(
+      width: 170,
+      height: 210,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+              color: const Color(0xFFCACACA),
+              width: 1,
+              style: BorderStyle.solid)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

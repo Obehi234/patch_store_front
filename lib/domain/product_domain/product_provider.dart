@@ -35,6 +35,7 @@ class ProductProvider with ChangeNotifier {
   }
 
   Future<void> fetchProducts() async {
+
     try {
       _products = await productService.fetchProducts();
       _categories = productService.getCategories(_products);

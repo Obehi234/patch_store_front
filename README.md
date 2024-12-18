@@ -1,5 +1,6 @@
 # Store_front App
-![img_2.png](img_2.png)
+
+# ![img_3.png](img_3.png)
 
 This is a Flutter application that displays a list of products and allows users filter products by
 categories and sort them by price. The data is fetched from the [Fake Store Api](https://fakestoreapi.com )
@@ -45,5 +46,6 @@ categories and sort them by price. The data is fetched from the [Fake Store Api]
   - Sorting by category
 
 - # Caching with SharedPreferences
-  The cart items were stored with shared preferences to reduce wait time for the user
+  - The cart items were stored with shared preferences to reduce wait time for the user
+  - Also implemented cache validation where the cache was refreshed every one hour in case information in the backend (end point) had been validated
 

@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,16 +9,20 @@ class ProductService {
   ProductService({required this.client});
 
   Future<List<Product>> fetchProducts() async {
-
     final prefs = await SharedPreferences.getInstance();
-
-
     final cachedProductItems = prefs.getStringList('products');
+    final cacheTimestamp = prefs.getInt('products_timestamp');
 
-    if(cachedProductItems != null && cachedProductItems.isNotEmpty) {
-      return cachedProductItems.map((itemJson) => Product.fromJson(json.decode(itemJson))).toList();
+    if (cachedProductItems != null &&
+        cachedProductItems.isNotEmpty &&
+        cacheTimestamp != null) {
+      final cacheAge = DateTime.now().millisecondsSinceEpoch - cacheTimestamp;
+      if (cacheAge < Duration(hours: 1).inMilliseconds) {
+        return cachedProductItems
+            .map((itemJson) => Product.fromJson(json.decode(itemJson)))
+            .toList();
+      }
     }
-
     List<Product> allProducts = [];
     int page = 1;
     int limit = 20;
@@ -48,6 +51,8 @@ class ProductService {
     final prefs = await SharedPreferences.getInstance();
     final productData = productItems.map((item) => json.encode(item)).toList();
     await prefs.setStringList('products', productData);
+    await prefs.setInt(
+        'products_timestamp', DateTime.now().microsecondsSinceEpoch);
   }
 
   List<String> getCategories(List<Product> products) {
@@ -58,10 +63,3 @@ class ProductService {
     return categoriesSet.toList();
   }
 }
-
-
-
-
-
-
-
