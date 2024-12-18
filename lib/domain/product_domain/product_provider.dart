@@ -16,7 +16,9 @@ class ProductProvider with ChangeNotifier {
   ProductProvider({required this.productService});
 
   List<Product> get products => _filteredProducts;
+
   List<String> get categories => _categories;
+
   String? get selectedCategory => _selectedCategory;
 
   String? getCategoryImage(String category) {
@@ -39,8 +41,8 @@ class ProductProvider with ChangeNotifier {
       _categoryImages = getCategoryImages();
       _filteredProducts = _products;
       notifyListeners();
-    } catch (e) {
-      print('Error fetching products: $e');
+    } catch (e, stacktrace) {
+      print('Error fetching products: $e, $stacktrace');
     }
   }
 
@@ -49,13 +51,16 @@ class ProductProvider with ChangeNotifier {
     if (category == null || category.isEmpty) {
       _filteredProducts = _products;
     } else {
-      _filteredProducts = _products.where((product) => product.category == category).toList();
+      _filteredProducts =
+          _products.where((product) => product.category == category).toList();
     }
     notifyListeners();
   }
 
   void sortProductsByPrice(bool ascending) {
-    _filteredProducts.sort((a, b) => ascending ? a.price.compareTo(b.price) : b.price.compareTo(a.price));
+    _filteredProducts.sort((a, b) =>
+    ascending ? a.price.compareTo(b.price) : b
+        .price.compareTo(a.price));
     notifyListeners();
   }
 
