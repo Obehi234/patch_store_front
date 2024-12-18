@@ -1,9 +1,8 @@
 # Store_front App
+![img_1.png](img_1.png)
 
 This is a Flutter application that displays a list of products and allows users filter products by
 categories and sort them by price. The data is fetched from the [Fake Store Api](https://fakestoreapi.com )
-
-
 
 ## Features:
 - Displays a list of products fetched from the Fake Store API.
