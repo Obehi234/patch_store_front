@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:store_front/domain/product_domain/product_service.dart';
 import '../../model/product.dart';
@@ -35,7 +34,6 @@ class ProductProvider with ChangeNotifier {
   }
 
   Future<void> fetchProducts() async {
-
     try {
       _products = await productService.fetchProducts();
       _categories = productService.getCategories(_products);
@@ -60,8 +58,7 @@ class ProductProvider with ChangeNotifier {
 
   void sortProductsByPrice(bool ascending) {
     _filteredProducts.sort((a, b) =>
-    ascending ? a.price.compareTo(b.price) : b
-        .price.compareTo(a.price));
+        ascending ? a.price.compareTo(b.price) : b.price.compareTo(a.price));
     notifyListeners();
   }
 
@@ -76,6 +73,4 @@ class ProductProvider with ChangeNotifier {
     }
     notifyListeners();
   }
-
-
 }

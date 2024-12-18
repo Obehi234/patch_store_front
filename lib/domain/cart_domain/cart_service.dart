@@ -14,14 +14,17 @@ class CartService {
     final cachedCartItems = prefs.getStringList('cart_items');
 
     if (cachedCartItems != null && cachedCartItems.isNotEmpty) {
-      return cachedCartItems.map((itemJson) => CartItem.fromJson(json.decode(itemJson))).toList();
+      return cachedCartItems
+          .map((itemJson) => CartItem.fromJson(json.decode(itemJson)))
+          .toList();
     }
 
     return await _fetchFromApi();
   }
 
   Future<List<CartItem>> _fetchFromApi() async {
-    final response = await client.get(Uri.parse('https://fakestoreapi.com/carts'));
+    final response =
+        await client.get(Uri.parse('https://fakestoreapi.com/carts'));
 
     if (response.statusCode == 200) {
       List<dynamic> cartData = json.decode(response.body);
@@ -61,4 +64,3 @@ class CartService {
     await prefs.setStringList('cart_items', cartData);
   }
 }
-
