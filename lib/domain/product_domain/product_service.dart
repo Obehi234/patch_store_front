@@ -17,7 +17,7 @@ class ProductService {
         cachedProductItems.isNotEmpty &&
         cacheTimestamp != null) {
       final cacheAge = DateTime.now().millisecondsSinceEpoch - cacheTimestamp;
-      if (cacheAge < Duration(hours: 1).inMilliseconds) {
+      if (cacheAge < const Duration(hours: 1).inMilliseconds) {
         return cachedProductItems
             .map((itemJson) => Product.fromJson(json.decode(itemJson)))
             .toList();

@@ -55,8 +55,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       const SizedBox(height: 10,),
                       Text("${productProvider.products.length} products to choose from", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
                       const SizedBox(height: 8,),
-                      Container(height: 60,
-                        child: const Padding(
+                      const SizedBox(height: 60,
+                        child: Padding(
                           padding: EdgeInsets.symmetric(vertical: 12.0),
                           child: CategoryButtonRow(),
                         ),),

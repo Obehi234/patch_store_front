@@ -22,7 +22,7 @@ class _CategoryButtonsState extends State<CategoryButtonRow> {
       "Lowest Price First", "Highest Price First"
     ];
 
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,

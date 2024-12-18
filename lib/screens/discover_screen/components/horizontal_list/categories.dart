@@ -5,7 +5,7 @@ import 'package:store_front/domain/product_domain/product_provider.dart';
 class CategoryFilter extends StatefulWidget {
   final List<String> categories;
 
-  CategoryFilter({required this.categories});
+  const CategoryFilter({super.key, required this.categories});
 
   @override
   _CategoryFilterState createState() => _CategoryFilterState();
